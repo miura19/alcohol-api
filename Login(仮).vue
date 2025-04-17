@@ -30,11 +30,15 @@ const handleLogin = async () => {
 		errorMessage.value = 'ログインに失敗しました'
 	}
 }
+//認証済みならユーザーデータを取得
 const fetchUserData = async () => {
 	try {
 		const res = await axios.get('http://localhost/api/user', {
 			withCredentials: true,
-			withXSRFToken: true
+			withXSRFToken: true,
+			headers: {
+				Accept: 'application/json',
+			}
 		})
 		console.log('ユーザーデータ:', res.data)
 	} catch (error) {
